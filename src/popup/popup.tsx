@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import { fetchOpenWeatherData } from '../utils/api'
 import './popup.css'
+import WeatherCard from './WeatherCard'
 
 const App: React.FC<{}> = () => {
-  useEffect(() => {
-    fetchOpenWeatherData('Hanoi')
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }, [])
   return (
     <div>
-      <img src="icon.png" />
+      <WeatherCard city='Hanoi'/>
+      <WeatherCard city='Saigon'/>
     </div>
   )
 }

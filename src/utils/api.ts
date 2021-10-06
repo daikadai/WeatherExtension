@@ -3,6 +3,7 @@ const OPEN_WEATHER_API_KEY = 'b786e38d414c016a8383aafdbe2eb3c5'
 export interface OpenWeatherdata {
   name: string,
   main: {
+    temp: number,
     feels_like: number,
     humidity: number,
     pressure: number,
@@ -28,6 +29,6 @@ export async function fetchOpenWeatherData(city: string): Promise<OpenWeatherdat
   }
 
   const data: OpenWeatherdata = await res.json()
-  
+
   return data
 }
