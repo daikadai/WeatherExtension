@@ -5,14 +5,16 @@ import "./popup.css";
 import WeatherCard from "./WeatherCard";
 import { IconButton, InputBase, Paper, Box, Grid } from "@material-ui/core";
 import { Add as AddIcon } from "@material-ui/icons";
-import { getStoredCities, setStoredCities } from '../utils/storage';
+import { getStoredCities, setStoredCities, getStoredOption, LocalStorageOptions } from '../utils/storage';
 
 const App: React.FC<{}> = () => {
   const [cities, setCities] = useState<string[]>([]);
   const [cityInput, setCityInput] = useState<string>('')
+  const [options, setOptions] = useState<LocalStorageOptions | null>(null)
 
   useEffect(() => {
     getStoredCities().then(cities => setCities(cities))
+    getStoredOption().then(options => setOptions(options))
   }, [])
 
   const handleCityButtonClick = () => {
@@ -35,6 +37,8 @@ const App: React.FC<{}> = () => {
         setCities([...cities])
       })
   }
+
+  if(!options) return null
 
   return (
     <Box mx="8px" my="16px">
