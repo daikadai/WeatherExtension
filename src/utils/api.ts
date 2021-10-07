@@ -24,8 +24,11 @@ export interface OpenWeatherdata {
 
 export type OpenWeatherTempScale = 'metric' | 'imperial'
 
-export async function fetchOpenWeatherData(city: string): Promise<OpenWeatherdata> {
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OPEN_WEATHER_API_KEY}`)
+export async function fetchOpenWeatherData(
+  city: string,
+  tempScale: OpenWeatherTempScale
+): Promise<OpenWeatherdata> {
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${tempScale}&appid=${OPEN_WEATHER_API_KEY}`)
   if(!res.ok) {
     throw new Error('City not found')
   }
